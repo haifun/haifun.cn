@@ -1,0 +1,32 @@
+language: node_js
+node_js: stable
+
+addons: # Travis CI建议加的，自动更新api
+  apt:
+    update: true
+
+cache:
+  directories:
+  - node_modules # 缓存 node_modules
+
+install:
+- npm install # 初次安装，在CI环境中，执行安装npm依赖
+
+# before_script:
+
+script:
+#- hexo g # 执行 hexo generate，把文章编译到public中
+- rm -rf public
+- hexo clean
+- hexo generate
+
+after_success: # 执行script成功后，进入到public，上传文件
+- cd ./public
+- scp -r ./ root@121.40.36.37:/home/www/blog;
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_46820e995b5c_key -iv $encrypted_46820e995b5c_iv
+-in id_rsa.enc -out ~\/.ssh/id_rsa -d
+-chmod 600 ~/.ssh/id_rsa
+addons:
+  ssh_known_hosts: 121.40.36.37
