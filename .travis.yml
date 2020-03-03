@@ -32,3 +32,6 @@ before_install:
 branches:
   only:
   - master # CI 只针对分支 master
+
+addons:
+  ssh_known_hosts: 121.40.36.37
