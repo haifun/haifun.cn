@@ -22,7 +22,7 @@ script:
 
 after_success: # 执行script成功后，进入到public，上传文件
 - cd ./public
-- scp -r ./* root@121.40.36.37:/home/www/blog/;
+- scp -r ./* root@121.40.36.37:/home/www/blog/
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_46820e995b5c_key -iv $encrypted_46820e995b5c_iv
